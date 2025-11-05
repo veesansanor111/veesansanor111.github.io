@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ยินดีต้อนรับ</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: "Prompt", sans-serif;
+    }
+
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* พื้นหลังโปร่งใสทับวิดีโอ */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+    }
+
+    .overlay h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    /* ปุ่มหลักทั่วไป */
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: #ffffff;
+      color: rgb(0, 0, 0);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #1e40af;
+      transform: scale(1.05);
+    }
+
+    /* ปุ่มเสียง - ย้ายไปมุมขวาบน */
+    #soundBtn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      font-size: 1em;
+      padding: 10px 20px;
+      border-radius: 8px;
+      z-index: 10;
+    }
+
+    #soundBtn:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- พื้นหลังวิดีโอ -->
+  <video autoplay loop playsinline id="introVideo" class="video-bg">
+    <source src="videos/intro.mp4" type="video/mp4">
+    เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+  </video>
+
+  <!-- ปุ่มเสียงอยู่มุมขวาบน -->
+  <button class="btn" id="soundBtn">🔈 ปิดเสียง</button>
+
+  <!-- ชั้นข้อความและปุ่มกลางหน้า -->
+  <div class="overlay">
+    <h1>ยินดีต้อนรับ</h1>
+    <button class="btn" id="startBtn">เริ่มต้น</button>
+  </div>
+
+  <script>
+    const video = document.getElementById("introVideo");
+    const soundBtn = document.getElementById("soundBtn");
+    const startBtn = document.getElementById("startBtn");
+
+    // พยายามเล่นวิดีโอพร้อมเสียง
+    video.muted = false;
+    video.play().catch(() => {
+      // ถ้าเบราว์เซอร์บล็อกเสียง ให้ mute ไว้ก่อน
+      video.muted = true;
+      video.play();
+      soundBtn.textContent = "🔊 เปิดเสียง";
+    });
+
+    // ปุ่มสลับเสียง
+    soundBtn.addEventListener("click", () => {
+      video.muted = !video.muted;
+      soundBtn.textContent = video.muted ? "🔊 เปิดเสียง" : "🔈 ปิดเสียง";
+    });
+
+    // ปุ่มเริ่มต้น
+    startBtn.addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
