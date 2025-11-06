@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome | test</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: "Prompt", sans-serif;
+      background: black;
+    }
+
+    /* 🔹 วิดีโอพื้นหลัง */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(75%) contrast(110%);
+    }
+
+    /* 🔹 ชั้นโปร่งใส (ข้อความกลางจอ) */
+    .overlay {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .overlay h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      animation: slideDown 1.2s ease-out;
+    }
+
+    .overlay p {
+      font-size: 1.2em;
+      margin-bottom: 60px;
+      opacity: 0.8;
+      animation: fadeIn 2s ease-in;
+    }
+
+    /* 🔹 ปุ่ม glassmorphism iOS */
+    .btn {
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 14px 40px;
+      font-size: 1.2em;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: all 0.35s ease;
+      animation: fadeInUp 1.5s ease-out;
+      z-index: 2;
+    }
+
+    .btn:hover {
+      transform: translateX(-50%) scale(1.07);
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
+    }
+
+    /* 🔹 กล่องรวมสวิตช์ */
+    .sound-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 5;
+      color: white;
+      font-size: 1em;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 8px 14px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 26px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(255,255,255,0.3);
+      transition: 0.4s;
+      border-radius: 30px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #30d158;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+
+    .label-text {
+      user-select: none;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideDown { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes fadeInUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes fadeOut { to { opacity: 0; transform: scale(1.1); } }
+
+    .fade-out { animation: fadeOut 1s forwards; }
+
+    @media (max-width: 768px) {
+      .overlay h1 { font-size: 2em; }
+      .overlay p { font-size: 1em; }
+      .btn { bottom: 40px; padding: 12px 28px; font-size: 1em; }
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop playsinline id="introVideo" class="video-bg">
+    <source src="videos/intro.mp4" type="video/mp4">
+    เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+  </video>
+
+  <!-- 🔊 สวิตช์เปิด/ปิดเสียง -->
+  <div class="sound-toggle">
+    <label class="switch">
+      <input type="checkbox" id="soundSwitch">
+      <span class="slider"></span>
+    </label>
+    <span class="label-text" id="soundLabel">🔇</span>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h1>ยินดีต้อนรับสู่เว็บไซต์</h1>
+    <p>กลุ่มชายชายล้วน วิชาโครงงาน ร่วมกับ OpenAI</p>
+    <button class="btn" id="startBtn">เริ่มต้น</button>
+  </div>
+
+  <script>
+    const video = document.getElementById("introVideo");
+    const soundSwitch = document.getElementById("soundSwitch");
+    const soundLabel = document.getElementById("soundLabel");
+    const startBtn = document.getElementById("startBtn");
+    const overlay = document.getElementById("overlay");
+
+    // เริ่มต้น: ปิดเสียง
+    video.muted = true;
+    video.play().catch(() => console.log("autoplay blocked"));
+    soundSwitch.checked = false;
+    soundLabel.textContent = "🔇";
+
+    // เมื่อสวิตช์เปลี่ยน
+    soundSwitch.addEventListener("change", () => {
+      if (soundSwitch.checked) {
+        video.muted = false;
+        soundLabel.textContent = "🔊";
+      } else {
+        video.muted = true;
+        soundLabel.textContent = "🔇";
+      }
+    });
+
+    // ปุ่มเริ่มต้น
+    startBtn.addEventListener("click", () => {
+      overlay.classList.add("fade-out");
+      setTimeout(() => {
+        window.location.href = "Home.html";
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
