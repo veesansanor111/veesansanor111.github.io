@@ -1,0 +1,79 @@
+:root {
+    --bg-light: #f0f9ff;
+    --grad-light: radial-gradient(circle at 10% 20%, #e0f2fe 0%, transparent 40%), radial-gradient(circle at 90% 80%, #cffafe 0%, transparent 40%);
+    --bg-dark: #0f172a;
+    --grad-dark: radial-gradient(circle at 10% 20%, #1e293b 0%, transparent 40%), radial-gradient(circle at 90% 80%, #334155 0%, transparent 40%);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+/* Glass Effect */
+.glass {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Hide number input spinners */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Initial Light Theme */
+#app {
+    background-color: var(--bg-light);
+}
+
+#bg-grad {
+    background: var(--grad-light);
+}
+
+/* Dark Theme Specifics */
+body.dark-theme #app {
+    background-color: var(--bg-dark);
+}
+
+body.dark-theme #bg-grad {
+    background: var(--grad-dark);
+}
+
+body.dark-theme #main-title,
+body.dark-theme #logo-text,
+body.dark-theme #theme-btn {
+    color: white;
+}
+
+body.dark-theme #theme-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-theme #height,
+body.dark-theme #weight {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .bg-white\/40 {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.float-anim {
+    animation: float 4s ease-in-out infinite;
+}
