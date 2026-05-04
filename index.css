@@ -1,0 +1,75 @@
+/* ตั้งค่าพื้นฐาน */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: black;
+}
+
+
+/* วิดีโอพื้นหลัง */
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* กล่องกลางจอ */
+.overlay {
+  position: relative;
+  z-index: 1;
+
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  color: white;
+
+  background: rgba(0, 0, 0, 0.3);
+}
+
+
+/* ปุ่มเริ่มต้น */
+.btn {
+  margin-top: 20px;
+  padding: 10px 30px;
+
+  border-radius: 25px;
+  border: none;
+
+  cursor: pointer;
+}
+
+
+/* ปุ่มเสียง */
+.sound-box {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  z-index: 10;
+}
+
+#btnSound {
+  padding: 8px 14px;
+
+  border-radius: 20px;
+  border: none;
+
+  cursor: pointer;
+
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
