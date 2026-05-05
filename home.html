@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="th"> <!-- กำหนดภาษาเป็นภาษาไทย -->
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- รองรับการแสดงผลบนอุปกรณ์เคลื่อนที่ -->
+    <meta charset="UTF-8"> <!-- กำหนดการเข้ารหัสตัวอักษรเป็น UTF-8 เพื่อรองรับภาษาไทย -->
+    <title>นสต.19</title> <!-- ชื่อเรื่องของหน้าเว็บ -->
+    <link rel="stylesheet" href="home.css"> <!-- ลิงก์ไปยังไฟล์ CSS สำหรับการตกแต่งหน้าเว็บ -->
+</head>
+<body>
+
+<!-- เมนู -->
+<div class="top-menu">
+    <a href="exercise.html">แนะนำออกกำลังกาย</a>
+    <a href="music.html">ฟังเพลง</a>
+    <a href="member.html">สมาชิก</a>
+</div>
+
+<!-- กลางจอ -->
+<main class="main">
+    <div class="container">
+        <h1>คำนวณ BMI</h1>
+
+        <input type="number" id="weight" placeholder="น้ำหนัก (kg)"> <!-- ช่องกรอกน้ำหนัก -->
+        <input type="number" id="height" placeholder="ส่วนสูง (cm)"> <!-- ช่องกรอกส่วนสูง -->
+
+        <button onclick="calculateBMI()">คำนวณ</button> <!-- ปุ่มสำหรับเรียกใช้ฟังก์ชันคำนวณ BMI -->
+
+        <div id="result"></div> <!-- กล่องสำหรับแสดงผล BMI -->
+        <div id="status"></div> <!-- กล่องสำหรับแสดงสถานะของ BMI -->
+    </div>
+</main>
+
+<!-- footer -->
+<footer class="footer"> <!-- ส่วนท้ายของหน้าเว็บ -->
+    Powered by skycolorTH and OpenAI <!-- ข้อความแสดงแหล่งที่มาของข้อมูลหรือผู้พัฒนาเว็บไซต์ -->
+</footer>
+
+<script src="script.js"></script> <!-- ลิงก์ไปยังไฟล์ JavaScript -->
+</body>
+</html>
