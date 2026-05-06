@@ -1,0 +1,74 @@
+<!DOCTYPE html> 
+<html lang="th"> <!-- กำหนดภาษาเป็นภาษาไทย -->
+<head>
+  <meta charset="UTF-8"> <!-- กำหนดการเข้ารหัสตัวอักษรเป็น UTF-8 เพื่อรองรับภาษาไทย -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- รองรับการแสดงผลบนอุปกรณ์เคลื่อนที่ -->
+  <title>BMI Calculator</title>
+
+  <!-- เรียกใช้ CSS -->
+  <link rel="stylesheet" href="index.css"> <!-- เชื่อมโยงไฟล์ CSS สำหรับการจัดรูปแบบหน้าเว็บ -->
+</head>
+<body>
+
+  <!-- วิดีโอพื้นหลัง -->
+  <video id="bgVideo" class="video-bg" autoplay muted loop playsinline> <!-- วิดีโอพื้นหลังที่เล่นอัตโนมัติและไม่มีเสียง -->
+    <source src="videos/intro.mp4" type="video/mp4"> <!-- แหล่งที่มาของวิดีโอและประเภทของไฟล์ -->
+  </video>
+
+
+  <!-- ปุ่มเสียง -->
+  <div class="sound-box"> <!-- กล่องสำหรับปุ่มเสียงที่อยู่ด้านบนขวาของหน้าจอ -->
+    <button id="btnSound">🔈</button> <!-- ปุ่มสำหรับเปิด/ปิดเสียงวิดีโอ โดยเริ่มต้นเป็นปุ่มเสียงปิด (🔈) -->
+  </div>
+
+
+  <!-- ตัวอักษร -->
+  <div class="overlay" id="overlay"> <!-- กล่องข้อความที่อยู่ตรงกลางหน้าจอ -->
+
+    <h1>ยินดีต้อนรับสู่เว็บไซต์ คำนวณBMI</h1>
+
+    <p>กลุ่มผู้ชายล้วน วิชาโครงงาน</p>
+
+    <button id="btnStart" class="btn"> <!-- ปุ่มเริ่มต้น -->
+      เคลื่อนที่
+    </button>
+
+  </div>
+
+
+  <!-- jsคำสั่งปุ่ม -->
+  <script>
+
+    //อ้างอิง element
+    const video = document.getElementById("bgVideo"); // อ้างอิงวิดีโอพื้นหลัง
+    const btnSound = document.getElementById("btnSound"); // อ้างอิงปุ่มเสียง
+    const btnStart = document.getElementById("btnStart"); // อ้างอิงปุ่มเริ่มต้น
+    const overlay = document.getElementById("overlay"); // อ้างอิงกล่องข้อความที่อยู่ตรงกลางหน้าจอ
+
+    //สถานะเสียง (เปิด/ปิด)
+    let isSoundOn = false;
+
+    //ปุ่มเสียง
+    btnSound.addEventListener("click", () => { // เมื่อคลิกปุ่มเสียง ให้สลับสถานะเสียงและอัปเดตวิดีโอและไอคอนปุ่มตามสถานะใหม่
+
+      isSoundOn = !isSoundOn; // สลับสถานะเสียง (เปิด/ปิด)
+
+      if (isSoundOn) { // ถ้าเสียงเปิด ให้เปิดเสียงวิดีโอและเปลี่ยนไอคอนปุ่ม
+        video.muted = false;
+        btnSound.textContent = "🔊";
+      } else { // ถ้าเสียงปิด ให้ปิดเสียงวิดีโอและเปลี่ยนไอคอนปุ่ม
+        video.muted = true;
+        btnSound.textContent = "🔈";
+      }
+
+    });
+
+    //ปุ่มเริ่มต้น
+    btnStart.addEventListener("click", () => { // เมื่อคลิกปุ่มเริ่มต้น ให้ซ่อนกล่องข้อความและเปลี่ยนหน้าไปยัง home.html
+      window.location.href = "home.html"; // เปลี่ยนหน้าไปยัง home.html
+    });
+
+  </script>
+
+</body>
+</html>
